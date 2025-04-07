@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Para Você</title>
+  <title>Para o Nicolas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -15,25 +15,12 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-    }
-
-    #coracao {
-      font-size: 120px;
-      color: #e60073;
-      animation: pulse 1s infinite;
-      text-shadow: 0 0 15px rgba(230, 0, 115, 0.8);
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.3); }
-      100% { transform: scale(1); }
+      align-items: center;
     }
 
     button {
-      font-size: 20px;
-      padding: 12px 24px;
-      margin-top: 40px;
+      font-size: 24px;
+      padding: 16px 32px;
       border-radius: 12px;
       border: none;
       background-color: #ff99cc;
@@ -46,15 +33,42 @@
     button:hover {
       background-color: #ff66aa;
     }
+
+    #coracao {
+      font-size: 100px;
+      display: none;
+      margin-top: 40px;
+      animation: brilho 1s infinite;
+      color: #e60073;
+      text-shadow: 0 0 10px #ff99cc, 0 0 20px #ff66aa;
+    }
+
+    @keyframes brilho {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.3);
+      }
+    }
+
+    #assinatura {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      font-size: 14px;
+      color: #333;
+    }
   </style>
 </head>
 <body>
-  <div id="coracao">♥</div>
-  <button onclick="mostrarMensagem()">Eu queria dizer mas...</button>
+  <button onclick="mostrarCoracao()">Para Nicolas</button>
+  <div id="coracao">❤️</div>
+  <div id="assinatura">não é um caminhão mas vale</div>
 
   <script>
-    function mostrarMensagem() {
-      alert("Você é muito especial!");
+    function mostrarCoracao() {
+      document.getElementById('coracao').style.display = 'block';
     }
   </script>
 </body>
