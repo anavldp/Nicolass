@@ -34,25 +34,64 @@
       background-color: #ff66aa;
     }
 
-    #coracao {
-      font-size: 100px;
-      display: none;
+    .heart {
+      position: relative;
+      width: 120px;
+      height: 108px;
       margin-top: 40px;
+      transform: rotate(-45deg);
       animation: brilho 1s infinite;
-      color: #e60073;
-      text-shadow: 0 0 10px #ff99cc, 0 0 20px #ff66aa;
+      display: none;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 108px;
+      background: #e60073;
+      border-radius: 50%;
+      box-shadow: 0 0 20px #ff66aa, 0 0 40px #ff99cc;
+    }
+
+    .heart::before {
+      top: -60px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 60px;
+      top: 0;
     }
 
     @keyframes brilho {
       0%, 100% {
-        transform: scale(1);
+        transform: scale(1) rotate(-45deg);
       }
       50% {
-        transform: scale(1.3);
+        transform: scale(1.2) rotate(-45deg);
+      }
+    }
+
+    /* Nova animação de entrada */
+    .animar {
+      animation: aparecer 1s ease-out forwards;
+    }
+
+    @keyframes aparecer {
+      0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-45deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(-45deg);
       }
     }
 
     #assinatura {
+      display: none;
       position: fixed;
       bottom: 10px;
       right: 10px;
@@ -63,12 +102,16 @@
 </head>
 <body>
   <button onclick="mostrarCoracao()">Para Nicolas</button>
-  <div id="coracao">❤️</div>
+  <div class="heart" id="coracao"></div>
   <div id="assinatura">não é um caminhão mas vale</div>
 
   <script>
     function mostrarCoracao() {
-      document.getElementById('coracao').style.display = 'block';
+      document.querySelector('button').style.display = 'none';
+      const coracao = document.getElementById('coracao');
+      coracao.style.display = 'block';
+      coracao.classList.add('animar');
+      document.getElementById('assinatura').style.display = 'block';
     }
   </script>
 </body>
