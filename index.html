@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="pt-br"><head>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
   <meta charset="UTF-8">
   <title>Para Nicolas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,98 +17,113 @@
       align-items: center;
       overflow: hidden;
     }
+
     .heart-container {
       display: none;
       position: relative;
       width: 220px;
       height: 199px;
-      animation: aparecer 1s ease forwards;
-    }.heart {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: scale(0);
-  animation: pulse 1.6s infinite ease-in-out, aparecer 7s ease forwards;
-  filter: drop-shadow(0 0 15px #e6ccff);
-}
+    }
 
-.circle-left,
-.circle-right {
-  width: 110px;
-  height: 120px;
-  border-radius: 50%;
-  position: absolute;
-  background-color: transparent;
-}
+    .heart {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform: scale(0);
+      filter: drop-shadow(0 0 15px #e6ccff);
+    }
 
-.circle-left {
-  left: 10px;
-  top: 0;
-}
+    .circle-left,
+    .circle-right {
+      width: 110px;
+      height: 120px;
+      border-radius: 50%;
+      position: absolute;
+      background-color: transparent;
+    }
 
-.circle-right {
-  right: 10px;
-  top: 0;
-}
+    .circle-left {
+      left: 10px;
+      top: 0;
+    }
 
-.triangle {
-  position: absolute;
-  bottom: 0;
-  left: 10px;
-  width: 200px;
-  height: 110px;
-  background-color: transparent;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-}
+    .circle-right {
+      right: 10px;
+      top: 0;
+    }
 
-.roxo .circle-left,
-.roxo .circle-right,
-.roxo .triangle {
-  background-color: #a64ca6;
-}
+    .triangle {
+      position: absolute;
+      bottom: 0;
+      left: 10px;
+      width: 200px;
+      height: 110px;
+      background-color: transparent;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+    }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(5); }
-  100% { transform: scale(1); }
-}
+    .roxo .circle-left,
+    .roxo .circle-right,
+    .roxo .triangle {
+      background-color: #a64ca6;
+    }
 
-@keyframes aparecer {
-  0% { transform: scale(0); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
 
-#assinatura {
-  display: none;
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  font-size: 14px;
-  color: #333;
-}
+    @keyframes aparecer {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
 
-button {
-  font-size: 22px;
-  padding: 14px 30px;
-  border-radius: 12px;
-  border: none;
-  background-color: #ff99cc;
-  color: #fff;
-  cursor: pointer;
-  box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-  transition: background-color 0.3s ease;
-}
+    #assinatura {
+      display: none;
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      font-size: 14px;
+      color: #333;
+    }
 
-button:hover {
-  background-color: #ff66aa;
-}
+    button {
+      font-size: 22px;
+      padding: 14px 30px;
+      border-radius: 12px;
+      border: none;
+      background-color: #ff99cc;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+    }
 
+    button:hover {
+      background-color: #ff66aa;
+    }
+
+    .particle {
+      position: absolute;
+      font-size: 24px;
+      color: #ff66cc;
+      animation: floatUp 4s linear infinite;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+    }
   </style>
 </head>
 <body>
   <button onclick="mostrarCoracoes()">Para Nicolas</button>
+
   <div class="heart-container" id="container">
     <div class="heart roxo">
       <div class="circle-left"></div>
@@ -124,12 +141,58 @@ button:hover {
       <div class="triangle"></div>
     </div>
   </div>
+
   <div id="assinatura">não é um caminhão mas vale</div>
+
+  <audio id="musica" src="https://cdn.pixabay.com/download/audio/2023/03/29/audio_dcee0c5c23.mp3?filename=romantic-love-story-143053.mp3" loop></audio>
+
   <script>
     function mostrarCoracoes() {
       document.querySelector('button').style.display = 'none';
-      document.getElementById('container').style.display = 'block';
+
+      const container = document.getElementById('container');
+      container.style.display = 'block';
+      
+      void container.offsetWidth;
+
+      const hearts = container.querySelectorAll('.heart');
+      hearts.forEach(heart => {
+        heart.style.animation = 'pulse 1.2s infinite ease-in-out, aparecer 1s ease forwards';
+      });
+
       document.getElementById('assinatura').style.display = 'block';
+
+      const audio = document.getElementById('musica');
+      audio.volume = 0.5;
+      audio.play();
+
+      gerarParticulas();
+    }
+
+    function gerarParticulas() {
+      const total = 20;
+      for (let i = 0; i < total; i++) {
+        const part = document.createElement('div');
+        part.classList.add('particle');
+        part.style.left = Math.random() * 100 + 'vw';
+        part.style.top = '100vh';
+        part.textContent = '♥';
+        part.style.animationDuration = 2 + Math.random() * 3 + 's';
+        document.body.appendChild(part);
+
+        setTimeout(() => part.remove(), 5000);
+      }
+
+        const part = document.createElement('div');
+        part.classList.add('particle');
+        part.style.left = Math.random() * 100 + 'vw';
+        part.style.top = '100vh';
+        part.textContent = '♥';
+        part.style.animationDuration = 2 + Math.random() * 3 + 's';
+        document.body.appendChild(part);
+
+        setTimeout(() => part.remove(), 5000);
+      }, 500);
     }
   </script>
 </body>
