@@ -144,15 +144,19 @@
 
   <div id="assinatura">não é um caminhão mas vale</div>
 
-  <audio id="musica" src="https://cdn.pixabay.com/download/audio/2023/03/29/audio_dcee0c5c23.mp3?filename=romantic-love-story-143053.mp3" loop></audio>
+  <!-- Beethoven - Moonlight Sonata -->
+  <audio id="musica" src="https://cdn.pixabay.com/download/audio/2022/12/23/audio_d54a304c3f.mp3?filename=moonlight-sonata-beethoven-130417.mp3" loop></audio>
 
   <script>
     function mostrarCoracoes() {
+      const audio = document.getElementById('musica');
+      audio.volume = 0.5;
+      audio.play().catch(() => {});
+
       document.querySelector('button').style.display = 'none';
 
       const container = document.getElementById('container');
       container.style.display = 'block';
-      
       void container.offsetWidth;
 
       const hearts = container.querySelectorAll('.heart');
@@ -161,10 +165,6 @@
       });
 
       document.getElementById('assinatura').style.display = 'block';
-
-      const audio = document.getElementById('musica');
-      audio.volume = 0.5;
-      audio.play();
 
       gerarParticulas();
     }
@@ -179,10 +179,10 @@
         part.textContent = '♥';
         part.style.animationDuration = 2 + Math.random() * 3 + 's';
         document.body.appendChild(part);
-
         setTimeout(() => part.remove(), 5000);
       }
 
+      setInterval(() => {
         const part = document.createElement('div');
         part.classList.add('particle');
         part.style.left = Math.random() * 100 + 'vw';
@@ -190,7 +190,6 @@
         part.textContent = '♥';
         part.style.animationDuration = 2 + Math.random() * 3 + 's';
         document.body.appendChild(part);
-
         setTimeout(() => part.remove(), 5000);
       }, 500);
     }
