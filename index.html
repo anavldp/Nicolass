@@ -16,52 +16,22 @@
       align-items: center;
       overflow: hidden;
     }.heart-container {
-  position: relative;
-  width: 200px;
-  height: 180px;
   display: none;
   animation: aparecer 1s ease forwards;
 }
 
-.heart {
-  position: absolute;
-  top: 0;
-  left: 0;
+svg {
   width: 200px;
-  height: 180px;
-  transform: scale(0);
+  height: 200px;
+  opacity: 0;
   animation: pulse 1s infinite ease-in-out, aparecer 1s ease forwards;
 }
 
-.heart.pink {
-  background: pink;
-}
-
-.heart.white {
-  background: white;
-  box-shadow: 0 0 25px red;
-}
-
-.heart::before,
-.heart::after {
-  content: "";
-  position: absolute;
-  width: 100px;
-  height: 160px;
-  background: inherit;
-  border-radius: 100px 100px 0 0;
-}
-
-.heart::before {
-  left: 100px;
-  transform: rotate(-45deg);
-  transform-origin: 0 100%;
-}
-
-.heart::after {
-  left: 0;
-  transform: rotate(45deg);
-  transform-origin: 100% 100%;
+.heart-path {
+  fill: transparent;
+  stroke: red;
+  stroke-width: 8;
+  filter: drop-shadow(0 0 10px red) drop-shadow(0 0 20px red);
 }
 
 @keyframes pulse {
@@ -103,8 +73,10 @@ button:hover {
 </head>
 <body>
   <button onclick="mostrarCoracoes()">Para Nicolas</button>  <div class="heart-container" id="container">
-    <div class="heart white"></div>
-    <div class="heart pink"></div>
+    <svg viewBox="0 0 32 29.6">
+      <path class="heart-path" d="M23.6,0c-3.4,0-6.4,2.1-7.6,5.1C14.8,2.1,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.1,16,21.2,16,21.2
+        s16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+    </svg>
   </div>  <div id="assinatura">não é um caminhão mas vale</div>  <script>
     function mostrarCoracoes() {
       document.querySelector('button').style.display = 'none';
