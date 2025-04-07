@@ -2,16 +2,15 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Para o Nicolas</title>
+  <title>Para Você</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom right, #fff0f5, #ffe4e1);
+      background: linear-gradient(to bottom right, #ffb6c1, #ffe4e1);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -19,12 +18,10 @@
     }
 
     #coracao {
-      display: none;
-      font-size: 80px;
+      font-size: 120px;
       color: #e60073;
-      margin-top: 30px;
       animation: pulse 1s infinite;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      text-shadow: 0 0 15px rgba(230, 0, 115, 0.8);
     }
 
     @keyframes pulse {
@@ -33,22 +30,14 @@
       100% { transform: scale(1); }
     }
 
-    #assinatura {
-      display: none;
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      font-size: 14px;
-      color: #333;
-    }
-
     button {
-      font-size: 22px;
-      padding: 14px 30px;
+      font-size: 20px;
+      padding: 12px 24px;
+      margin-top: 40px;
       border-radius: 12px;
       border: none;
       background-color: #ff99cc;
-      color: #fff;
+      color: white;
       cursor: pointer;
       box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
       transition: background-color 0.3s ease;
@@ -57,35 +46,16 @@
     button:hover {
       background-color: #ff66aa;
     }
-
-    @media (max-width: 600px) {
-      #coracao {
-        font-size: 60px;
-      }
-
-      button {
-        font-size: 18px;
-        padding: 10px 20px;
-      }
-    }
   </style>
 </head>
 <body>
-
-  <button onclick="mostrarMensagem()">Para Nicolas</button>
-
-  <div id="coracao">❤️ Nicolas ❤️</div>
-  <div id="assinatura">N é o caminhão mais vale</div>
-
-  <audio id="som" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+  <div id="coracao">♥</div>
+  <button onclick="mostrarMensagem()">Eu queria dizer mas...</button>
 
   <script>
     function mostrarMensagem() {
-      document.getElementById("coracao").style.display = "block";
-      document.getElementById("assinatura").style.display = "block";
-      document.getElementById("som").play();
+      alert("Você é muito especial!");
     }
   </script>
-
 </body>
 </html>
