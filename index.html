@@ -1,5 +1,4 @@
-<!DOCTYPE html><html lang="pt-br">
-<head>
+<!DOCTYPE html><html lang="pt-br"><head>
   <meta charset="UTF-8">
   <title>Para Nicolas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,71 +14,62 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
-    }.heart-container {
-  display: none;
-  position: relative;
-  width: 200px;
-  height: 180px;
-  animation: aparecer 1s ease forwards;
-}
-
-.heart {
+    }
+    .heart-container {
+      display: none;
+      position: relative;
+      width: 220px;
+      height: 199px;
+      animation: aparecer 1s ease forwards;
+    }.heart {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   transform: scale(0);
-  animation: pulse 1s infinite ease-in-out, aparecer 1s ease forwards;
+  animation: pulse 1.6s infinite ease-in-out, aparecer 1s ease forwards;
+  filter: drop-shadow(0 0 12px #a64ca6);
 }
 
-.heart .circle-left,
-.heart .circle-right {
-  width: 100px;
-  height: 100px;
+.circle-left,
+.circle-right {
+  width: 110px;
+  height: 120px;
   border-radius: 50%;
   position: absolute;
-  top: 0;
   background-color: transparent;
 }
 
-.heart .circle-left {
-  left: 0;
+.circle-left {
+  left: 10px;
+  top: 0;
 }
 
-.heart .circle-right {
-  right: 0;
+.circle-right {
+  right: 10px;
+  top: 0;
 }
 
-.heart .triangle {
+.triangle {
   position: absolute;
   bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
+  left: 10px;
+  width: 200px;
+  height: 110px;
   background-color: transparent;
   clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
 
-.branco {
-  filter: drop-shadow(0 0 15px red);
-}
-
-.rosa .circle-left,
-.rosa .circle-right,
-.rosa .triangle {
-  background-color: #ff69b4;
-}
-
-.branco .circle-left,
-.branco .circle-right,
-.branco .triangle {
-  background-color: rgba(255, 255, 255, 0.8);
+.roxo .circle-left,
+.roxo .circle-right,
+.roxo .triangle {
+  background-color: #a64ca6;
 }
 
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  50% { transform: scale(1.07); }
 }
 
 @keyframes aparecer {
@@ -115,22 +105,31 @@ button:hover {
   </style>
 </head>
 <body>
-  <button onclick="mostrarCoracoes()">Para Nicolas</button>  <div class="heart-container" id="container">
-    <div class="heart rosa">
+  <button onclick="mostrarCoracoes()">Para Nicolas</button>
+  <div class="heart-container" id="container">
+    <div class="heart roxo">
       <div class="circle-left"></div>
       <div class="circle-right"></div>
       <div class="triangle"></div>
     </div>
-    <div class="heart branco">
+    <div class="heart roxo">
       <div class="circle-left"></div>
       <div class="circle-right"></div>
       <div class="triangle"></div>
     </div>
-  </div>  <div id="assinatura">não é um caminhão mas vale</div>  <script>
+    <div class="heart roxo">
+      <div class="circle-left"></div>
+      <div class="circle-right"></div>
+      <div class="triangle"></div>
+    </div>
+  </div>
+  <div id="assinatura">não é um caminhão mas vale</div>
+  <script>
     function mostrarCoracoes() {
       document.querySelector('button').style.display = 'none';
       document.getElementById('container').style.display = 'block';
       document.getElementById('assinatura').style.display = 'block';
     }
-  </script></body>
+  </script>
+</body>
 </html>
