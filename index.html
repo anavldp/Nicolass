@@ -17,22 +17,64 @@
       overflow: hidden;
     }.heart-container {
   display: none;
+  position: relative;
+  width: 200px;
+  height: 180px;
   animation: aparecer 1s ease forwards;
 }
 
-svg {
-  width: 200px;
-  height: 200px;
-  opacity: 0;
-  background: none;
+.heart {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scale(0);
   animation: pulse 1s infinite ease-in-out, aparecer 1s ease forwards;
 }
 
-.heart-path {
-  fill: transparent;
-  stroke: red;
-  stroke-width: 4;
-  filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.5));
+.heart .circle-left,
+.heart .circle-right {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  background-color: transparent;
+}
+
+.heart .circle-left {
+  left: 0;
+}
+
+.heart .circle-right {
+  right: 0;
+}
+
+.heart .triangle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: transparent;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.branco {
+  filter: drop-shadow(0 0 15px red);
+}
+
+.rosa .circle-left,
+.rosa .circle-right,
+.rosa .triangle {
+  background-color: #ff69b4;
+}
+
+.branco .circle-left,
+.branco .circle-right,
+.branco .triangle {
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 @keyframes pulse {
@@ -74,10 +116,16 @@ button:hover {
 </head>
 <body>
   <button onclick="mostrarCoracoes()">Para Nicolas</button>  <div class="heart-container" id="container">
-    <svg viewBox="0 0 32 29.6" xmlns="http://www.w3.org/2000/svg">
-      <path class="heart-path" d="M23.6,0c-3.4,0-6.4,2.1-7.6,5.1C14.8,2.1,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.1,16,21.2,16,21.2
-        s16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
-    </svg>
+    <div class="heart rosa">
+      <div class="circle-left"></div>
+      <div class="circle-right"></div>
+      <div class="triangle"></div>
+    </div>
+    <div class="heart branco">
+      <div class="circle-left"></div>
+      <div class="circle-right"></div>
+      <div class="triangle"></div>
+    </div>
   </div>  <div id="assinatura">não é um caminhão mas vale</div>  <script>
     function mostrarCoracoes() {
       document.querySelector('button').style.display = 'none';
