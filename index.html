@@ -1,114 +1,107 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html><html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Para o Nicolas</title>
+  <title>Para Nicolas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #ffdde1, #fcc2d7);
+      text-align: center;
       margin: 0;
       padding: 0;
+      background: linear-gradient(to bottom, #fff0f5, #ffe4e1);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
+    }button {
+  font-size: 24px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 12px;
+  background-color: #ff99cc;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  margin-bottom: 30px;
+}
 
-    button {
-      font-size: 24px;
-      padding: 14px 28px;
-      border: none;
-      border-radius: 12px;
-      background-color: #ff66aa;
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      transition: 0.3s;
-    }
+button:hover {
+  background-color: #ff66aa;
+}
 
-    button:hover {
-      background-color: #ff3385;
-    }
+.cora-container {
+  position: relative;
+  height: 200px;
+}
 
-    .heart {
-      width: 120px;
-      height: 108px;
-      position: relative;
-      transform: rotate(-45deg);
-      background: #ff3366;
-      animation: aparecer 1s ease-out forwards, pulse 2s infinite;
-      display: none;
-    }
+.heart {
+  font-size: 100px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  animation: beat 1s infinite ease-in-out;
+  opacity: 0;
+}
 
-    .heart::before,
-    .heart::after {
-      content: "";
-      position: absolute;
-      width: 120px;
-      height: 108px;
-      background: #ff3366;
-      border-radius: 50%;
-      box-shadow: 0 0 15px #fff0f5, 0 0 25px #ff99cc;
-    }
+#heart1 {
+  color: white;
+  text-shadow: 0 0 20px red, 0 0 40px red;
+}
 
-    .heart::before {
-      top: -60px;
-      left: 0;
-    }
+#heart2 {
+  color: pink;
+}
 
-    .heart::after {
-      left: 60px;
-      top: 0;
-    }
+.show {
+  opacity: 1;
+  animation: appear 1s ease-out forwards, beat 1s infinite ease-in-out;
+}
 
-    @keyframes aparecer {
-      0% {
-        opacity: 0;
-        transform: scale(0.3) rotate(-45deg);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1) rotate(-45deg);
-      }
-    }
+@keyframes beat {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.3); }
+}
 
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1) rotate(-45deg);
-      }
-      50% {
-        transform: scale(1.2) rotate(-45deg);
-      }
-    }
+@keyframes appear {
+  0% { transform: translateX(-50%) scale(0); opacity: 0; }
+  100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}
 
-    #assinatura {
-      display: none;
-      position: fixed;
-      bottom: 12px;
-      right: 16px;
-      font-size: 14px;
-      color: #333;
-      font-style: italic;
-    }
+#assinatura {
+  display: none;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  font-size: 16px;
+  color: #333;
+}
+
+#assinatura.show {
+  display: block;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
   </style>
 </head>
 <body>
-  <button onclick="mostrar()">Para Nicolas</button>
-  <div class="heart" id="coracao"></div>
-  <div id="assinatura">não é um caminhão mas vale</div>
-
-  <script>
-    function mostrar() {
-      document.querySelector("button").style.display = "none";
-      const heart = document.getElementById("coracao");
-      const text = document.getElementById("assinatura");
-      heart.style.display = "block";
-      text.style.display = "block";
+  <button onclick="mostrarCoracao()">Para Nicolas</button>  <div class="cora-container">
+    <div id="heart1" class="heart">❤️</div>
+    <div id="heart2" class="heart">❤️</div>
+  </div>  <div id="assinatura">não é um caminhão mas vale</div>  <script>
+    function mostrarCoracao() {
+      document.querySelector('button').style.display = 'none';
+      document.getElementById('heart1').classList.add('show');
+      document.getElementById('heart2').classList.add('show');
+      document.getElementById('assinatura').classList.add('show');
     }
-  </script>
-</body>
+  </script></body>
 </html>
